@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jam Digital</title>
+</head>
+<body style="background:black; color:lime; display:flex; justify-content:center; align-items:center; height:100vh; font-family:monospace;">
+
+  <h1 id="jam" style="font-size:60px;"></h1>
+
+  <script>
+    function updateJam(){
+      let now = new Date();
+      let jam = now.getHours().toString().padStart(2,'0');
+      let menit = now.getMinutes().toString().padStart(2,'0');
+      let detik = now.getSeconds().toString().padStart(2,'0');
+
+      document.getElementById("jam").innerText = jam + ":" + menit + ":" + detik;
+    }
+
+    setInterval(updateJam, 1000);
+    updateJam();
+  </script>
+
+</body>
+</html>

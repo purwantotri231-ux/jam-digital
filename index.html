@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Website Pertama Gua</title>
+  <title>Jam Digital Keren</title>
 </head>
-<body>
-  <h1>Halo bro 🚀</h1>
-  <p>Ini website pertama gua dari GitHub</p>
+<body style="background:black; margin:0; overflow:hidden; font-family:monospace;">
+
+<div id="popup" style="
+  position:absolute;
+  top:100px;
+  left:100px;
+  background:black;
+  color:#00ff00;
+  padding:20px;
+  border:2px solid #00ff00;
+  border-radius:10px;
+  box-shadow:0 0 20px #00ff00;
+  cursor:move;
+">
+  <div id="tanggal" style="font-size:18px;"></div>
+  <div id="jam" style="font-size:40px;"></div>
+</div>
+
+<script>
+function updateJam(){
+  let now = new Date();
+
+  let hari = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+  let bulan = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+
+  let tgl = now.getDate();
+  let bln = bulan[now.getMonth()];
+  let thn = now.getFullYear();
+
+  let jam = now.getHours().toString().padStart(2,'0');
+  let menit = now.getMinutes().toString().padStart(2,'0');
+  let detik = now.getSeconds().toString().padStart(2,'0');
+
+  document.getElementById("tanggal").innerText = tgl + " " + bln + " " + thn;
+  document.getElementById("jam").innerText = jam + ":" + menit + ":" + detik;
+}
+
+setInterval(updateJam, 1000);
+updateJam();
+
+// DRAG FUNCTION
+let box = document.getElementById("popup");
+let isDragging = false;
+let offsetX, offsetY;
+
+box.addEventListener("mousedown", function(e){
+  isDragging = true;
+  offsetX = e.clientX - box.offsetLeft;
+  offsetY = e.clientY - box.offsetTop;
+});
+
+document.addEventListener("mousemove", function(e){
+  if(isDragging){
+    box.style.left = (e.clientX - offsetX) + "px";
+    box.style.top = (e.clientY - offsetY) + "px";
+  }
+});
+
+document.addEventListener("mouseup", function(){
+  isDragging = false;
+});
+</script>
+
 </body>
 </html>
